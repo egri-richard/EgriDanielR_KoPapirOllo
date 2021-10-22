@@ -139,7 +139,8 @@
             android:adjustViewBounds="true"
             android:src="@drawable/rock"
             android:background="@color/white"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:id="@+id/rockChoiceBtn"/>
 
         <ImageButton
             android:layout_width="0dp"
@@ -148,7 +149,8 @@
             android:adjustViewBounds="true"
             android:src="@drawable/paper"
             android:background="@color/white"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:id="@+id/paperChoiceBtn"/>
 
         <ImageButton
             android:layout_width="0dp"
@@ -157,7 +159,8 @@
             android:adjustViewBounds="true"
             android:src="@drawable/scissors"
             android:background="@color/white"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:id="@+id/scissorsChoiceBtn"/>
         
     </LinearLayout>
 
