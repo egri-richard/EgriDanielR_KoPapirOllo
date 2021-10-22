@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var numOfDrawText : TextView
     private lateinit var finishAlert : AlertDialog.Builder
     private lateinit var rnd : Random
-    private var playerSelector = 0
     private var cpuCurrentHp = 3
     private var playerCurrentHp = 3
     private var numOfDraw = 0
@@ -36,24 +35,21 @@ class MainActivity : AppCompatActivity() {
 
         rockChoiceBtn.setOnClickListener {
             playerChoicePic.setImageResource(R.drawable.rock)
-            playerSelector = 0
-            game()
+            game(0)
         }
 
         paperChoiceBtn.setOnClickListener {
             playerChoicePic.setImageResource(R.drawable.paper)
-            playerSelector = 1
-            game()
+            game(1)
         }
 
         scissorsChoiceBtn.setOnClickListener {
             playerChoicePic.setImageResource(R.drawable.scissors)
-            playerSelector = 2
-            game()
+            game(2)
         }
     }
 
-    private fun game() {
+    private fun game(playerSelector : Int) {
         val cpuSelector = rnd.nextInt(3)
         when(cpuSelector){
             0 -> cpuChoicePic.setImageResource(R.drawable.rock)
