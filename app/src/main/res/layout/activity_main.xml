@@ -89,6 +89,76 @@
         android:layout_below="@+id/healthDisplay"
         android:textAlignment="center"
         android:textSize="30sp"
-        android:text="Döntetlenek száma: 0"/>
+        android:text="Döntetlenek száma: 0"
+        android:id="@+id/numOfDraw"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="180dp"
+        android:layout_below="@id/numOfDraw"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/paper"
+        android:id="@+id/cpuChoicePic"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cpuChoicePic"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:text="A gép választása"
+        android:id="@+id/cpuChoiceText"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="180dp"
+        android:layout_below="@id/cpuChoiceText"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/paper"
+        android:id="@+id/playerChoicePic"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/playerChoicePic"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:text="A te választásod"
+        android:id="@+id/playerChoiceText"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/playerChoiceText"
+        android:orientation="horizontal">
+        
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rock"
+            android:background="@color/white"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/paper"
+            android:background="@color/white"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/scissors"
+            android:background="@color/white"
+            android:layout_weight="1"/>
+        
+    </LinearLayout>
 
   </RelativeLayout>
