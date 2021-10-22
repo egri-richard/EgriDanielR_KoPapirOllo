@@ -87,15 +87,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/healthDisplay"
+        android:text="Döntetlenek száma: 0"
         android:textAlignment="center"
         android:textSize="30sp"
-        android:text="Döntetlenek száma: 0"
-        android:id="@+id/numOfDraw"/>
+        android:id="@+id/numOfDrawText"/>
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="180dp"
-        android:layout_below="@id/numOfDraw"
+        android:layout_height="140dp"
+        android:layout_below="@id/numOfDrawText"
         android:layout_centerHorizontal="true"
         android:src="@drawable/paper"
         android:id="@+id/cpuChoicePic"/>
@@ -111,7 +111,7 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="180dp"
+        android:layout_height="140dp"
         android:layout_below="@id/cpuChoiceText"
         android:layout_centerHorizontal="true"
         android:src="@drawable/paper"

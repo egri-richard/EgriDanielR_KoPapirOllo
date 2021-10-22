@@ -3,7 +3,10 @@ package com.example.kopapirollo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -15,15 +18,88 @@ class MainActivity : AppCompatActivity() {
     private lateinit var playerHp1 : ImageView
     private lateinit var cpuChoicePic : ImageView
     private lateinit var playerChoicePic : ImageView
-    private lateinit var rockChoiceBtn : Button
-    private lateinit var paperChoiceBtn : Button
-    private lateinit var scissorsChoiceBtn : Button
+    private lateinit var rockChoiceBtn : ImageButton //rock is represented as 0
+    private lateinit var paperChoiceBtn : ImageButton //paper is represented as 1
+    private lateinit var scissorsChoiceBtn : ImageButton //scissors is represented as 2
+    private lateinit var numOfDrawText : TextView
+    private lateinit var finishAlert : AlertDialog.Builder
     private lateinit var rnd : Random
+    private var playerSelector = 0
+    private var cpuCurrentHp = 3
+    private var playerCurrentHp = 3
+    private var numOfDraw = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         init()
+
+        rockChoiceBtn.setOnClickListener {
+            playerChoicePic.setImageResource(R.drawable.rock)
+            playerSelector = 0
+            game()
+        }
+
+        paperChoiceBtn.setOnClickListener {
+            playerChoicePic.setImageResource(R.drawable.paper)
+            playerSelector = 1
+            game()
+        }
+
+        scissorsChoiceBtn.setOnClickListener {
+            playerChoicePic.setImageResource(R.drawable.scissors)
+            playerSelector = 2
+            game()
+        }
+    }
+
+    private fun game() {
+        val cpuSelector = rnd.nextInt(3)
+        when(cpuSelector){
+            0 -> cpuChoicePic.setImageResource(R.drawable.rock)
+            1 -> cpuChoicePic.setImageResource(R.drawable.paper)
+            2 -> cpuChoicePic.setImageResource(R.drawable.scissors)
+        }
+
+        if( (playerSelector == 0 && cpuSelector == 0) ||
+            (playerSelector == 1 && cpuSelector == 1) ||
+            (playerSelector == 2 && cpuSelector == 2)) {
+            numOfDraw++
+            numOfDrawText.text = "Döntetlenek száma: ${numOfDraw}"
+        } else if(  (playerSelector == 0 && cpuSelector == 2) ||
+                    (playerSelector == 1 && cpuSelector == 0) ||
+                    (playerSelector == 2 && cpuSelector == 1)) {
+            cpuCurrentHp--
+            when(cpuCurrentHp) {
+                2 -> cpuHp3.setImageResource(R.drawable.heart1)
+                1 -> cpuHp2.setImageResource(R.drawable.heart1)
+                else -> {
+                    cpuHp1.setImageResource(R.drawable.heart1)
+                    finishAlert.setTitle("Győztél!").show()
+                }
+            }
+        } else {
+            playerCurrentHp--
+            when(playerCurrentHp) {
+                2 -> playerHp3.setImageResource(R.drawable.heart1)
+                1 -> playerHp2.setImageResource(R.drawable.heart1)
+                else -> {
+                    playerHp1.setImageResource(R.drawable.heart1)
+                    finishAlert.setTitle("Vesztettél!").show()
+                }
+            }
+        }
+    }
+
+    private fun reset() {
+        cpuCurrentHp = 3
+        playerCurrentHp = 3
+        cpuHp1.setImageResource(R.drawable.heart2)
+        cpuHp2.setImageResource(R.drawable.heart2)
+        cpuHp3.setImageResource(R.drawable.heart2)
+        playerHp1.setImageResource(R.drawable.heart2)
+        playerHp2.setImageResource(R.drawable.heart2)
+        playerHp3.setImageResource(R.drawable.heart2)
     }
 
     private fun init() {
@@ -38,6 +114,11 @@ class MainActivity : AppCompatActivity() {
         rockChoiceBtn = findViewById(R.id.rockChoiceBtn)
         paperChoiceBtn = findViewById(R.id.paperChoiceBtn)
         scissorsChoiceBtn = findViewById(R.id.scissorsChoiceBtn)
+        numOfDrawText = findViewById(R.id.numOfDrawText)
+        finishAlert = AlertDialog.Builder(this)
+            .setMessage("Szeretne új játékot játszani?")
+            .setPositiveButton("Igen") {_, _ -> reset()}
+            .setNegativeButton("Nem") {_, _ -> finish()}
         rnd = Random
     }
 }
